@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>한국수자원공사</title>
+  <link rel="stylesheet" href="../dist/css/main.css">
+  <script src="../js/theme.js" defer></script>
+</head>
+
+<body class="layout">
+
+  <!-- 본문 바로가기 (스킵 네비게이션) -->
+  <a href="#main-content" class="skip-nav">본문 바로가기</a>
+
+  <!-- [COMPONENT] Sidebar -->
+  <aside class="sidebar" id="sidebar" aria-label="채팅 내역 및 메뉴" data-state="expanded">
+
+    <!-- [COMPONENT] SidebarHeader : 로고 + 토글 -->
+    <div class="sidebar__header">
+      <h1 class="sidebar__logo">
+        <a href="index.html" aria-label="수자원공사 AI 홈으로 이동">
+          <img src="../assets/images/k-water.png" alt="수자원공사 로고">
+        </a>
+      </h1>
+      <button class="btn btn--icon sidebar__toggle" id="sidebar-toggle" aria-label="사이드바 접기" aria-expanded="true"
+        aria-controls="sidebar">
+        <i class="icon__panelLeft" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <!-- [COMPONENT] SidebarNav : 주요 액션 메뉴 -->
+    <nav class="sidebar__nav" aria-label="주요 메뉴">
+      <ul role="list">
+
+        <!-- 새 대화 -->
+        <li>
+          <a href="index.html" class="sidebar__nav-item" aria-label="새 대화 시작">
+            <i class="icon__newChat" aria-hidden="true"></i>
+            <span class="sidebar__nav-label">새 대화</span>
+          </a>
+        </li>
+
+        <!-- 대화 검색 -->
+        <li>
+          <a href="search.html" class="sidebar__nav-item" aria-label="대화 검색">
+            <i class="icon__search" aria-hidden="true"></i>
+            <span class="sidebar__nav-label">대화 검색</span>
+          </a>
+        </li>
+
+        <!-- AI 생성 파일 -->
+        <li>
+          <a href="#" class="sidebar__nav-item" aria-label="AI 생성 파일 보기">
+            <i class="icon__file" aria-hidden="true"></i>
+            <span class="sidebar__nav-label">AI 생성 파일</span>
+          </a>
+        </li>
+
+        <!-- 대화 보관함 -->
+        <li>
+          <a href="archive.html" class="sidebar__nav-item" aria-label="대화 보관함 보기">
+            <i class="icon__archive" aria-hidden="true"></i>
+            <span class="sidebar__nav-label">대화 보관함</span>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+
+
+    <!-- [COMPONENT] UserProfile -->
+    <div class="sidebar__footer">
+      <button class="user-profile" aria-label="사용자 메뉴 열기" aria-haspopup="menu" aria-expanded="false">
+        <div class="user-profile__avatar"
+          style="background:var(--color-primary);color:#fff;font-size:0.625rem;">
+          길동
+        </div>
+        <span class="user-profile__name">홍길동</span>
+      </button>
+      <div class="user-profile__popover" role="menu" aria-label="사용자 메뉴" data-state="hidden">
+        <ul class="popover__list" role="list">
+          <li><button class="popover__item" role="menuitem" data-action="setting">설정</button></li>
+          <li><button class="popover__item" role="menuitem" data-action="signout">로그아웃</button></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+  <!-- [COMPONENT] ChatWindow -->
+  <main class="chat-window" id="main-content" aria-label="채팅창">
+
+    <!-- [COMPONENT] ChatHeader -->
+    <header class="chat-header">
+      <button class="btn btn--icon" id="mobile-sidebar-btn" aria-label="메뉴 열기" aria-expanded="false" aria-controls="sidebar">
+        <i class="icon__menu" aria-hidden="true"></i>
+      </button>
+      <div class="dropdown" role="group" aria-label="AI 모델 선택">
+        <button class="dropdown__trigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="model-menu">
+          Model
+          <i class="icon__chevronDown" aria-hidden="true"></i>
+        </button>
+        <ul class="dropdown__menu" id="model-menu" role="listbox" data-state="closed" aria-label="모델 선택">
+          <li class="dropdown__item" role="option" aria-selected="false"><a href="">Claude Opus</a></li>
+          <li class="dropdown__item" role="option" aria-selected="true"><a href="">Claude Sonnet</a></li>
+          <li class="dropdown__item" role="option" aria-selected="false"><a href="">Claude Haiku</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- [COMPONENT] onboarding -->
+    <div class="onboarding" id="onboarding" role="log" aria-label="onboarding" aria-live="polite"
+      aria-relevant="additions">
+
+      <!-- [COMPONENT] EmptyState -->
+      <div class="empty-state">
+        <h2 class="empty-state__title">AI 자료 찾기</h2>
+        <!-- [COMPONENT] InputArea -->
+        <div class="input-area" role="region" aria-label="메시지 입력">
+          <div class="input-area__wrap">
+              <!-- 업로드된 파일 목록 -->
+              <ul class="file-list" id="file-list" role="list" aria-label="첨부 파일 목록"></ul>
+              <div class="input-area__inner">
+                <!-- 파일 첨부 -->
+                <div class="input-area__attach">
+                  <button
+                    class="btn btn--icon input-area__attach-btn"
+                    id="attach-btn"
+                    aria-label="파일 첨부"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    aria-controls="attach-popover"
+                  >
+                    <i class="icon__plus" aria-hidden="true"></i>
+                  </button>
+        
+                  <!-- [COMPONENT] 파일 첨부 팝오버 -->
+                  <div
+                    class="popover"
+                    id="attach-popover"
+                    role="menu"
+                    aria-label="파일 첨부 옵션"
+                    data-state="hidden"
+                  >
+                    <ul class="popover__list" role="list">
+                      <li>
+                        <button class="popover__item" id="upload-pdf-btn" role="menuitem" aria-label="문서 파일 업로드">
+                          <i class="icon__documentUpload" aria-hidden="true"></i>
+                          문서 파일 업로드
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+        
+                  <!-- 숨겨진 파일 input (PDF만 허용) -->
+                  <input
+                    type="file"
+                    id="file-input"
+                    class="sr-only"
+                    accept=".pdf"
+                    aria-label="PDF 파일 선택"
+                  >
+                </div>
+                <!-- 텍스트 입력 및 파일 첨부 -->
+                <div class="input-area__text">
+                  <!-- 텍스트 입력 -->
+                  <label for="message-input" class="sr-only">메시지 입력</label>
+                  <textarea
+                    id="message-input"
+                    class="input-area__textarea"
+                    placeholder="질문을 입력하세요"
+                    rows="1"
+                    aria-multiline="true"
+                    aria-label="메시지 입력창"
+                  ></textarea>
+                </div>
+                <!-- 전송 -->
+                <button class="btn btn--send" id="send-btn" aria-label="메시지 전송" aria-disabled="true" data-state="disabled">
+                  <i class="icon__arrowUp" aria-hidden="true"></i>
+                </button>
+              </div>
+          </div>
+          <p class="input-area__disclaimer">AI 생성 결과물 활용에 따른 책임은 사용자 본인에게 있으며 이용 내역은 조직 정책에 따라 기록됩니다.</p>
+        </div>
+        <div class="util-menu">
+          <ul class="util-menu__inner">
+            <li><a href="index.html">
+              <h4>
+                <i class="icon__aiChat" aria-hidden="true"></i>
+                AI 대화</h4>
+              <p>궁금한 내용을 자유롭게 질문하면 AI가 답변해드립니다.</p>
+            </a></li>
+            <li><a href="doc-writing.html">
+              <h4>
+                <i class="icon__docWrite" aria-hidden="true"></i>
+                문서 작성</h4>
+              <p>업무에 필요한 문서를 AI로 빠르고 편리하게 완성할 수 있습니다.</p>
+            </a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- 토스트 컨테이너 -->
+  <div id="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+  <!-- 모바일 오버레이 -->
+  <div class="overlay" id="overlay" aria-hidden="true" data-state="hidden"></div>
+
+  <script src="../js/sidebar.js" defer></script>
+  <script src="../js/toast.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+</body>
+
+</html>

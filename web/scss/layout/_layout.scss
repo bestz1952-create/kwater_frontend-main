@@ -1,0 +1,115 @@
+@use '../abstracts/mixins' as *;
+// ==============================
+// _layout.scss
+// ==============================
+
+.layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: var(--size-8);
+  padding: var(--size-12);
+  min-height: 56px;
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .dropdown {
+    position: relative;
+    &__trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--size-8);
+      padding: var(--size-4) var(--size-12);
+      border-radius: var(--radius-8);
+      font-size: var(--size-15);
+      color: var(--color-primary);
+
+      &:hover { background-color: var(--color-surface-03); }
+
+      @include focus-ring;
+    }
+
+    &__menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      min-width: 160px;
+      background: var(--color-surface-01);
+      border-radius: var(--radius-12);
+      padding: var(--size-8);
+      z-index: var(--z-tooltip);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+
+      &[data-state="open"] { display: block; }
+    }
+
+    &__item a {
+      display: flex;
+      align-items: center;
+      padding: var(--size-8);
+      border-radius: var(--radius-8);
+      font-size: var(--size-14);
+      cursor: pointer;
+
+      &:hover { background-color: var(--color-surface-03); }
+    }
+  }
+
+  // 모바일 메뉴 버튼 — 데스크탑에서는 숨김
+  #mobile-sidebar-btn {
+    display: none;
+
+    @include respond-to('mobile') {
+      display: flex;
+    }
+  }
+}
+
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: var(--sidebar-width);
+  transition: margin-left var(--transition-sidebar);
+  overflow: hidden;
+
+  // sidebar collapsed 시
+  .sidebar[data-state="collapsed"] ~ & {
+    margin-left: var(--sidebar-width-collapsed);
+  }
+
+  @include respond-to('mobile') {
+    margin-left: 0 !important;
+  }
+}
+
+// 채팅 윈도우 (헤더 + 컨테이너 + 인풋)
+.chat-window {
+  min-width: 440px !important;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: var(--z-overlay);
+
+  &[data-state="visible"] {
+    display: block;
+  }
+}

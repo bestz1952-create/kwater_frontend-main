@@ -1,0 +1,86 @@
+// ==============================
+// _toast.scss
+// ==============================
+
+#toast-container {
+  position: fixed;
+  bottom: 30px;
+  right: 34px;
+  z-index: var(--z-index-toast, 9999);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: var(--size-8);
+  padding: var(--size-12) var(--size-16);
+  background-color: var(--color-toast);
+  color: #fff;
+  border-radius: var(--radius-32);
+  font-size: var(--size-14);
+  line-height: 1.5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.3s ease forwards;
+  pointer-events: auto;
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: var(--size-8);
+    width: 248px;
+  }
+
+  &__close {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &:focus {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+    }
+  }
+
+  &.removing {
+    animation: slideDown 0.3s ease forwards;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}

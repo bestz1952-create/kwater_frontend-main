@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>한국수자원공사</title>
+  <link rel="stylesheet" href="../dist/css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <script src="../js/theme.js" defer></script>
+</head>
+
+<body class="layout">
+
+  <!-- 본문 바로가기 (스킵 네비게이션) -->
+  <a href="#main-content" class="skip-nav">본문 바로가기</a>
+
+  <!-- [COMPONENT] Sidebar -->
+  <aside class="sidebar" id="sidebar" aria-label="채팅 내역 및 메뉴" data-state="expanded">
+
+    <!-- [COMPONENT] SidebarHeader : 로고 + 토글 -->
+    <div class="sidebar__header">
+      <h1 class="sidebar__logo">
+        <a href="index.html" aria-label="수자원공사 AI 홈으로 이동">
+          <img src="../assets/images/k-water.png" alt="수자원공사 로고">
+        </a>
+      </h1>
+      <button class="btn btn--icon sidebar__toggle" id="sidebar-toggle" aria-label="사이드바 접기" aria-expanded="true"
+        aria-controls="sidebar">
+        <i class="icon__panelLeft" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <!-- [COMPONENT] SidebarNav : 주요 액션 메뉴 -->
+    <nav class="sidebar__nav" aria-label="주요 메뉴">
+      <ul role="list">
+
+        <!-- 새 대화 -->
+        <li>
+          <a href="index.html" class="sidebar__nav-item" aria-label="새 대화 시작">
+            <i class="icon__newChat" aria-hidden="true"></i>
+            <span class="sidebar__nav-label">새 대화</span>
+          </a>
+        </li>
+
+        <!-- 대화 검색 -->
+        <li>
+          <a href="search.html" class="sidebar__nav-item" aria-label="대화 검색">
+            <i class="icon__search" aria-hidden="true"></i>
+            <span class="sidebar__nav-label">대화 검색</span>
+          </a>
+        </li>
+
+        <!-- AI 생성 파일 -->
+        <li>
+          <a href="#" class="sidebar__nav-item" aria-label="AI 생성 파일 보기">
+            <i class="icon__file" aria-hidden="true"></i>
+            <span class="sidebar__nav-label">AI 생성 파일</span>
+          </a>
+        </li>
+
+        <!-- 대화 보관함 -->
+        <li>
+          <a href="archive.html" class="sidebar__nav-item" aria-label="대화 보관함 보기">
+            <i class="icon__archive" aria-hidden="true"></i>
+            <span class="sidebar__nav-label">대화 보관함</span>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+
+    <!-- [COMPONENT] ChatHistoryList -->
+    <nav class="sidebar__history" aria-label="채팅 내역">
+      <span class="chat-history__date" role="heading" aria-level="3">대화 기록</span>
+      <ul role="list">
+        <li class="chat-history__item">
+          <a href="chat-processing.html" class="chat-history__link" aria-current="page">
+            <span class="chat-history__title">추론 처리중</span>
+          </a>
+          <button class="btn btn--icon chat-history__menu" aria-label="채팅 옵션 열기" aria-haspopup="menu" aria-expanded="false">
+            <i class="icon__dotsVertical" aria-hidden="true"></i>
+          </button>
+          <div class="chat-history__popover" role="menu" aria-label="채팅 옵션" data-state="hidden">
+            <ul class="popover__list" role="list">
+              <li><button class="popover__item" role="menuitem" data-action="pin">고정하기</button></li>
+              <li><button class="popover__item" role="menuitem" data-action="rename" data-modal-target="modal-rename">이름 변경</button></li>
+              <li><button class="popover__item popover__item--danger" role="menuitem" data-action="delete" data-modal-target="modal-delete">삭제</button></li>
+            </ul>
+          </div>
+        </li>
+        <li class="chat-history__item">
+          <a href="chat-answer.html" class="chat-history__link">
+            <span class="chat-history__title">답변 완료</span>
+          </a>
+          <button class="btn btn--icon chat-history__menu" aria-label="채팅 옵션 열기" aria-haspopup="menu" aria-expanded="false">
+            <i class="icon__dotsVertical" aria-hidden="true"></i>
+          </button>
+          <div class="chat-history__popover" role="menu" aria-label="채팅 옵션" data-state="hidden">
+            <ul class="popover__list" role="list">
+              <li><button class="popover__item" role="menuitem" data-action="pin">고정하기</button></li>
+              <li><button class="popover__item" role="menuitem" data-action="rename" data-modal-target="modal-rename">이름 변경</button></li>
+              <li><button class="popover__item popover__item--danger" role="menuitem" data-action="delete" data-modal-target="modal-delete">삭제</button></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- [COMPONENT] UserProfile -->
+    <div class="sidebar__footer">
+      <button class="user-profile" aria-label="사용자 메뉴 열기" aria-haspopup="menu" aria-expanded="false">
+        <div class="user-profile__avatar"
+          style="background:var(--color-primary);color:#fff;font-size:0.625rem;">
+          길동
+        </div>
+        <span class="user-profile__name">홍길동</span>
+      </button>
+      <div class="user-profile__popover" role="menu" aria-label="사용자 메뉴" data-state="hidden">
+        <ul class="popover__list" role="list">
+          <li><button class="popover__item" role="menuitem" data-action="setting">설정</button></li>
+          <li><button class="popover__item" role="menuitem" data-action="signout">로그아웃</button></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+  <!-- [COMPONENT] ChatWindow -->
+  <main class="chat-window" id="main-content" aria-label="채팅창">
+    <!-- [COMPONENT] ChatHeader -->
+    <header class="chat-header">
+      <div class="dropdown" role="group" aria-label="AI 모델 선택">
+        <button class="dropdown__trigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="model-menu">
+          Model
+          <i class="icon__chevronDown" aria-hidden="true"></i>
+        </button>
+        <ul class="dropdown__menu" id="model-menu" role="listbox" data-state="closed" aria-label="모델 선택">
+          <li class="dropdown__item" role="option" aria-selected="false"><a href="">Claude Opus</a></li>
+          <li class="dropdown__item" role="option" aria-selected="true"><a href="">Claude Sonnet</a></li>
+          <li class="dropdown__item" role="option" aria-selected="false"><a href="">Claude Haiku</a></li>
+        </ul>
+      </div>
+    </header>
+    <!-- 메인 채팅 + 사이드 패널 컨테이너 -->
+    <div class="chat-window__container">
+      <!-- [COMPONENT] chatMessages -->
+      <div class="chat-messages" id="chat-messages" role="log" aria-label="대화 내용" aria-live="polite" aria-relevant="additions">
+        <div class="chat-messages__wrap">
+          <div class="chat-messages__inner">
+            <div class="chat-messages__title">
+              <h2>날짜와 시간을 보여주는 코드</h2>
+            </div>
+            <div class="chat-messages__question">
+              <div class="chat-messages__bubble">
+              <p>날짜와 시간을 보여주는 코드를 작성해줘</p>
+              </div>
+            </div>
+            <div class="reasoning__steps">
+              <button class="accordion__trigger dep1" aria-expanded="false" aria-controls="reasoning-steps-menu">
+                <span>추론과정</span>
+                <i class="icon__chevronDown" aria-hidden="true"></i>
+              </button>
+              <div class="accordion__panel" id="reasoning-steps-menu" data-state="closed">
+                <ul>
+                  <li class="accordion__item" >
+                    <button class="accordion__trigger dep2" aria-expanded="true" aria-controls="reasoning-detail-1">
+                      <span>추론과정 1</span>
+                      <i class="icon__chevronDown" aria-hidden="true"></i>
+                    </button>
+                    <ul id="reasoning-detail-1" class="accordion__detail" data-state="open">
+                      <li><p>추론 과정 1-1</p></li>
+                      <li>
+                        <a href="" class="btn--chip_search">
+                          <i class="icon__search2" aria-hidden="true"></i>
+                          추론 과정 1-2
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="accordion__item" >
+                    <button class="accordion__trigger dep2" aria-expanded="true" aria-controls="reasoning-detail-2">
+                      <span>추론과정 2</span>
+                      <i class="icon__chevronDown" aria-hidden="true"></i>
+                    </button>
+                    <ul id="reasoning-detail-2" class="accordion__detail" data-state="open">
+                      <li>
+                        <a href="" class="btn--chip_search">
+                          <i class="icon__search2" aria-hidden="true"></i>
+                          추론 과정 2-1
+                        </a>
+                      </li>
+                      <li>
+                        <a href="" class="btn--chip_search">
+                          <i class="icon__search2" aria-hidden="true"></i>
+                          추론 과정 2-2
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="accordion__item" >
+                    <button class="accordion__trigger dep2 processing" aria-expanded="true" aria-controls="reasoning-detail-3" aria-disabled="true">
+                      <span>답변 작성 중</span>
+                    </button>
+                    <ul id="reasoning-detail-3" class="accordion__detail processing"  data-state="open">
+                      <li><p>추론 과정 3-1</p></li>
+                      <li>
+                        <a href="" class="btn--chip_search">
+                          <i class="icon__search2" aria-hidden="true"></i>
+                          추론 과정 3-2
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="chat-messages__answer">
+              <p class="answer__complete">날짜와 시간을 보여주는 코드는 사용하는 프로그래밍 언어에 따라 달라집니다. 가장 일반적으로 사용되는 Python 코드를 예시로 보여드릴게요.</p>
+              <div class="answer__complete code">
+                <div class="answer-code__header">
+                  <h6>python</h6>
+                  <button>
+                    <i class="icon__copy" aria-hidden="true"></i>
+                    복사
+                  </button>
+                </div>
+                <div class="answer-code__body">
+                  <pre><code class="language-python">from datetime import datetime
+# datetime 모듈에서 datetime 클래스 불러오기
+# 현재 날짜와 시간 가져오기
+now = datetime.now()
+# 원하는 형식 (‘YYYY-MM-DD HH:MM:SS’)으로 포맷팅
+formatted_now = now.strftime(‘%Y-%m-%d %H:%M:%S’)
+# 결과 출력
+print("현재 날짜와 시간:", formatted_now)</code></pre>
+                </div>
+              </div>
+              <p class="answer__complete">특정 형식으로 출력하고 싶은 것이 있으신가요?</p>
+            </div>
+
+            <!--
+            <div class="source-btn">
+              <button aria-label="출처 패널 열기" aria-expanded="false" aria-controls="source-panel">
+                <span class="source-btn__images" aria-hidden="true">
+                  <span><img src="https://picsum.photos/200?random=1" alt=""></span>
+                  <span><img src="https://picsum.photos/200?random=2" alt=""></span>
+                  <span><img src="https://picsum.photos/200?random=3" alt=""></span>
+                </span>
+                <span>5개 출처</span>
+              </button>
+            </div>
+            -->
+
+            <div class="feedback-btn">
+              <button class="btn--icon" aria-label="복사하기">
+                <i class="icon__copy" aria-hidden="true"></i>
+              </button>
+              <button class="btn--icon feedback-good" aria-label="도움이 돼요">
+                <i class="icon__thumbUp" aria-hidden="true"></i>
+              </button>
+              <button class="btn--icon feedback-bad" aria-label="도움이 안돼요" data-modal-target="modal-feedback-bad">
+                <i class="icon__thumbDown" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="input-area" role="region" aria-label="메시지 입력">
+          <div class="input-area__wrap">
+              <!-- 업로드된 파일 목록 -->
+              <ul class="file-list" id="file-list" role="list" aria-label="첨부 파일 목록"></ul>
+              <div class="input-area__inner">
+                <!-- 파일 첨부 -->
+                <div class="input-area__attach">
+                  <button
+                    class="btn btn--icon input-area__attach-btn"
+                    id="attach-btn"
+                    aria-label="파일 첨부"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    aria-controls="attach-popover"
+                  >
+                    <i class="icon__plus" aria-hidden="true"></i>
+                  </button>
+        
+                  <!-- [COMPONENT] 파일 첨부 팝오버 -->
+                  <div
+                    class="popover"
+                    id="attach-popover"
+                    role="menu"
+                    aria-label="파일 첨부 옵션"
+                    data-state="hidden"
+                  >
+                    <ul class="popover__list" role="list">
+                      <li>
+                        <button class="popover__item" id="upload-pdf-btn" role="menuitem" aria-label="문서 파일 업로드">
+                          <i class="icon__documentUpload" aria-hidden="true"></i>
+                          문서 파일 업로드
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+        
+                  <!-- 숨겨진 파일 input (PDF만 허용) -->
+                  <input
+                    type="file"
+                    id="file-input"
+                    class="sr-only"
+                    accept=".pdf"
+                    aria-label="PDF 파일 선택"
+                  >
+                </div>
+                <!-- 텍스트 입력 및 파일 첨부 -->
+                <div class="input-area__text">
+                  <!-- 텍스트 입력 -->
+                  <label for="message-input" class="sr-only">메시지 입력</label>
+                  <textarea
+                    id="message-input"
+                    class="input-area__textarea"
+                    readonly
+                    placeholder="응답 중입니다"
+                    rows="1"
+                    aria-multiline="true"
+                  ></textarea>
+                </div>
+                <!-- 전송 -->
+                <button class="btn btn--pause" id="pause-btn" aria-label="추론 정지" aria-disabled="true" data-state="disabled">
+                  <i class="icon__pause" aria-hidden="true"></i>
+                </button>
+              </div>
+          </div>
+          <p class="input-area__disclaimer">AI 생성 결과물 활용에 따른 책임은 사용자 본인에게 있으며 이용 내역은 조직 정책에 따라 기록됩니다.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 오른쪽 사이드 패널 : 출처 -->
+  <aside class="source-panel" id="source-panel" aria-label="출처 목록" data-state="closed">
+    <div class="source-panel__header">
+      <h2>출처</h2>
+      <button class="btn btn--icon" id="close-source-panel" aria-label="출처 패널 닫기">
+        <i class="icon__close_bk" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="source-panel__content">
+      <ul class="source-list" role="list">
+        <li class="source-item">
+          <div class="source-item__icon">
+            <figure><img src="https://picsum.photos/16?random=1" alt=""></figure>
+            <span>출처 이름</span>
+          </div>
+          <div class="source-item__content">
+            <h3><a href="" target="_blank" rel="noopener noreferrer">출처 타이틀입니다</a></h3>
+            <p>출처에 대한 설명이 들어가는 본문 텍스트 영역입니다. 사용자가 참고할 수 있는 정보, 저작권 안내, 데이터 제공자 등의 내용을 표시하는 용도로 활용합니다.</p>
+          </div>
+        </li>
+        <li class="source-item">
+          <div class="source-item__icon">
+            <figure><img src="https://picsum.photos/16?random=2" alt=""></figure>
+            <span>출처 이름</span>
+          </div>
+          <div class="source-item__content">
+            <h3><a href="" target="_blank" rel="noopener noreferrer">출처 타이틀입니다</a></h3>
+            <p>출처에 대한 설명이 들어가는 본문 텍스트 영역입니다. 사용자가 참고할 수 있는 정보, 저작권 안내, 데이터 제공자 등의 내용을 표시하는 용도로 활용합니다.</p>
+          </div>
+        </li>
+        <li class="source-item">
+          <div class="source-item__icon">
+            <figure><img src="https://picsum.photos/16?random=3" alt=""></figure>
+            <span>출처 이름</span>
+          </div>
+          <div class="source-item__content">
+            <h3><a href="" target="_blank" rel="noopener noreferrer">출처 타이틀입니다</a></h3>
+            <p>출처에 대한 설명이 들어가는 본문 텍스트 영역입니다. 사용자가 참고할 수 있는 정보, 저작권 안내, 데이터 제공자 등의 내용을 표시하는 용도로 활용합니다.</p>
+          </div>
+        </li>
+        <li class="source-item">
+          <div class="source-item__icon">
+            <figure><img src="https://picsum.photos/16?random=2" alt=""></figure>
+            <span>출처 이름</span>
+          </div>
+          <div class="source-item__content">
+            <h3><a href="" target="_blank" rel="noopener noreferrer">출처 타이틀입니다</a></h3>
+            <p>출처에 대한 설명이 들어가는 본문 텍스트 영역입니다. 사용자가 참고할 수 있는 정보, 저작권 안내, 데이터 제공자 등의 내용을 표시하는 용도로 활용합니다.</p>
+          </div>
+        </li>
+        <li class="source-item">
+          <div class="source-item__icon">
+            <figure><img src="https://picsum.photos/16?random=3" alt=""></figure>
+            <span>출처 이름</span>
+          </div>
+          <div class="source-item__content">
+            <h3><a href="" target="_blank" rel="noopener noreferrer">출처 타이틀입니다</a></h3>
+            <p>출처에 대한 설명이 들어가는 본문 텍스트 영역입니다. 사용자가 참고할 수 있는 정보, 저작권 안내, 데이터 제공자 등의 내용을 표시하는 용도로 활용합니다.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <!-- 드래그 핸들 -->
+    <div class="source-panel__divider" id="source-panel-divider" aria-hidden="true"></div>
+  </aside>
+
+  <!-- [COMPONENT] Modal: 부정 피드백 -->
+  <div class="modal" id="modal-feedback-bad" data-state="closed" role="dialog" aria-modal="true" aria-labelledby="modal-feedback-good-title">
+    <div class="modal__backdrop"></div>
+    <div class="modal__dialog">
+      <div class="modal__header">
+        <div class="modal__header-inner">
+          <h3 class="modal__title" id="modal-feedback-good-title">피드백</h3>
+          <button class="modal__close btn btn--icon" aria-label="모달 닫기">
+            <i class="icon__close_bk" aria-hidden="true"></i>
+          </button>
+        </div>
+        <p>제공해 주시는 의견은 AI를 개선하는 데 도움이 됩니다.</p>
+      </div>
+      <div class="modal__body">
+        <div class="chips__wrap">
+          <input type="radio" name="feedback1" id="feedback1-1" checked><label for="feedback1-1">사실과 다름</label>
+          <input type="radio" name="feedback1" id="feedback1-2"><label for="feedback1-2">요청 사항을 따르지 않음</label>
+          <input type="radio" name="feedback1" id="feedback1-3"><label for="feedback1-3">형식이 적절하지 않음</label>
+          <input type="radio" name="feedback1" id="feedback1-4"><label for="feedback1-4">일반적임/식상함</label>
+          <input type="radio" name="feedback1" id="feedback1-5"><label for="feedback1-5">느리거나 버그가 있음</label>
+          <input type="radio" name="feedback1" id="feedback1-6"><label for="feedback1-6">유해한 작업을 수행함</label>
+        </div>
+        <label for="feedback-good-input" class="modal__textlabel">세부 정보(선택)</label>
+        <textarea id="feedback-good-input" class="modal__textarea" placeholder="추가 의견을 입력하세요." rows="4"></textarea>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--secondary modal__cancel">취소</button>
+        <button class="btn btn--primary modal__submit">제출</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 토스트 컨테이너 -->
+  <div id="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+  <!-- [COMPONENT] Modal: 이름 변경 -->
+  <div class="modal" id="modal-rename" data-state="closed" role="dialog" aria-modal="true" aria-labelledby="modal-rename-title">
+    <div class="modal__backdrop"></div>
+    <div class="modal__dialog">
+      <div class="modal__header">
+        <div class="modal__header-inner">
+          <h3 class="modal__title" id="modal-rename-title">이름 변경</h3>
+          <button class="modal__close btn btn--icon" aria-label="모달 닫기">
+            <i class="icon__close_bk" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <div class="modal__body">
+        <div class="modal__body-inner">
+          <label for="rename-input" class="sr-only">새 이름 입력</label>
+          <input type="text" id="rename-input" class="modal__input" placeholder="새 이름을 입력하세요.">
+        </div>
+      </div>
+      <div class="modal__footer">
+       <button class="btn btn--secondary modal__cancel">취소</button>
+        <button class="btn btn--primary modal__submit">변경</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- [COMPONENT] Modal: 삭제 확인 -->
+  <div class="modal" id="modal-delete" data-state="closed" role="dialog" aria-modal="true" aria-labelledby="modal-delete-title">
+    <div class="modal__backdrop"></div>
+    <div class="modal__dialog size-sm">
+      <div class="modal__header">
+        <h3 class="modal__title" id="modal-delete-title">대화를 삭제할까요?</h3>
+      </div>
+      <div class="modal__footer">
+       <button class="btn btn--secondary modal__close">취소</button>
+        <button class="btn btn--primary modal__submit">삭제</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 모바일 오버레이 -->
+  <div class="overlay" id="overlay" aria-hidden="true" data-state="hidden"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <script src="../js/sidebar.js" defer></script>
+  <script src="../js/toast.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+</body>
+
+</html>

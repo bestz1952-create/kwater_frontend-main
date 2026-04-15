@@ -1,0 +1,41 @@
+// ==============================
+// _typography.scss
+// ==============================
+
+@font-face {
+	font-family: 'Pretendard';
+	font-weight: 700;
+	font-display: swap;
+	src: local('Pretendard Bold'), url('../../assets/fonts/Pretendard-Bold.woff2') format('woff2'), url('../../assets/fonts/Pretendard-Bold.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Pretendard';
+	font-weight: 600;
+	font-display: swap;
+	src: local('Pretendard SemiBold'), url('../../assets/fonts/Pretendard-SemiBold.woff2') format('woff2'), url('../../assets/fonts/Pretendard-SemiBold.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Pretendard';
+	font-weight: 500;
+	font-display: swap;
+	src: local('Pretendard Medium'), url('../../assets/fonts/Pretendard-Medium.woff2') format('woff2'), url('../../assets/fonts/Pretendard-Medium.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Pretendard';
+	font-weight: 400;
+	font-display: swap;
+	src: local('Pretendard Regular'), url('../../assets/fonts/Pretendard-Regular.woff2') format('woff2'), url('../../assets/fonts/Pretendard-Regular.woff') format('woff');
+}
+
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+h1 { font-size: 1.5rem;   font-weight: 600; }
+h2 { font-size: 1.25rem;  font-weight: 600; }
+h3 { font-size: 1.125rem; font-weight: 500; }

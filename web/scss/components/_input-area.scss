@@ -1,0 +1,263 @@
+// ==============================
+// _input-area.scss 채팅 입력창 및 파일 첨부 
+// ==============================
+
+.input-area {
+  width: 100%;
+  max-width: 796px;
+  padding: 0 var(--size-24);
+
+  &__wrap {
+    transition: border-radius var(--transition-base);
+    border-radius: var(--radius-32);
+    padding: var(--size-12);
+    background-color: var(--color-surface-02);
+    box-shadow: 0 0 2px 0 rgba(19, 20, 21, 0.05), 0 2px 4px 0 rgba(19, 20, 21, 0.10);
+
+    &--expanded {
+      border-radius: var(--radius-16);
+    }
+     
+  }
+
+  
+  &__inner {
+    display: flex;
+    align-items: flex-end;
+
+  }
+
+  &__text {
+    flex:1;
+    min-height: 32px;
+  }
+
+  &__textarea {
+    display: block;
+    width: 100%;
+    resize: none;
+    max-height: 200px;
+    font-size: var(--size-15);
+    text-align: left;
+    overflow-y: auto;
+    padding: var(--size-4);
+    line-height: 1.5;
+
+    &::placeholder ,
+    &:read-only { color: var(--color-tertiary-02); }
+  }
+
+  // Search input 커스텀 clear 버튼
+  input[type="search"] {
+    padding-right: 32px; // clear 버튼 공간 확보
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 12px 12px;
+
+    // 모든 브라우저의 기본 clear 버튼 완전히 숨기기
+    &::-webkit-clear-button {
+      appearance: none;
+      -webkit-appearance: none;
+      display: none !important;
+      visibility: hidden;
+      width: 0;
+      height: 0;
+    }
+
+    &::-webkit-search-cancel-button {
+      appearance: none;
+      -webkit-appearance: none;
+      display: none !important;
+      visibility: hidden;
+      width: 0;
+      height: 0;
+    }
+
+    &::-moz-search-cancel-button {
+      appearance: none;
+      display: none !important;
+      visibility: hidden;
+      width: 0;
+      height: 0;
+    }
+
+    // 값이 있을 때만 X 버튼 표시
+    &:not(:placeholder-shown) {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M10.2441 0.244078C10.5695 -0.0813593 11.097 -0.0813593 11.4225 0.244078C11.7478 0.569521 11.7479 1.09705 11.4225 1.42246L7.01166 5.83327L11.4225 10.2441C11.7478 10.5695 11.7479 11.0971 11.4225 11.4225C11.0971 11.7479 10.5695 11.7478 10.2441 11.4225L5.83327 7.01166L1.42246 11.4225C1.09705 11.7479 0.569521 11.7478 0.244078 11.4225C-0.0813593 11.097 -0.0813593 10.5695 0.244078 10.2441L4.65489 5.83327L0.244078 1.42246C-0.0813593 1.09703 -0.0813593 0.569515 0.244078 0.244078C0.569515 -0.0813593 1.09703 -0.0813593 1.42246 0.244078L5.83327 4.65489L10.2441 0.244078Z" fill="%2361646B"/></svg>');
+      cursor: pointer;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--size-4);
+    flex-shrink: 0;
+  }
+
+  &__disclaimer {
+    text-align: center;
+    font-size: min(var(--size-12), 1.4cqw);
+    color: var(--color-secondary-02);
+    margin-top: var(--size-8);
+  }
+
+  // 파일 첨부 영역 (버튼 + 팝오버 묶음)
+  &__attach {
+    position: relative;
+    flex-shrink: 0;
+  }
+ 
+  &__attach-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-32);
+
+    &[aria-expanded="true"],
+
+    &:hover,
+    &:active{
+      background-color: var(--color-tertiary-pressed);
+    }
+  }
+
+  // ==============================
+  // 팝오버
+  // ==============================
+  
+  .popover {
+    position: absolute;
+    bottom: calc(-100% - 30px);
+    left: 0;
+    min-width: 180px;
+    background: var(--color-surface-01);
+    border-radius: var(--radius-8);
+    padding: var(--size-8);
+    margin-left: calc(-1 * var(--size-12));
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    z-index: var(--z-tooltip);
+  
+    &[data-state="hidden"] { display: none; }
+    &[data-state="visible"] { display: block; }
+  
+    &__list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+  
+    &__item {
+      display: flex;
+      align-items: center;
+      gap: var(--size-8);
+      width: 100%;
+      padding: var(--size-8);
+      border-radius: var(--radius-8);
+      font-size: 0.875rem;
+      color: var(--color-primary);
+      white-space: nowrap;
+      transition: background-color var(--transition-base);
+  
+      &:hover { background-color: var(--color-tertiary-hover); }
+  
+      svg { color: var(--color-text-muted); flex-shrink: 0; }
+    }
+  }
+}
+@media (max-width: 767px) {
+  .chat-window {
+    min-width: 375px !important;
+    width: 100%;
+  }
+  .input-area__disclaimer {
+    font-size: min(var(--size-12), 2.1vw);
+  }
+}
+ 
+// ==============================
+// 파일 목록 + 칩
+// ==============================
+
+.file-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--size-8);
+  padding-bottom: var(--size-16);
+
+  &:empty { display: none; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.file-chip {
+  align-items: center;
+  gap: var(--size-6);
+  padding: var(--size-8) var(--size-12);
+  background-color: var(--border-secondary-02);
+  border: 1px solid var(--border-secondary-01);
+  border-radius: var(--radius-12);
+  font-size: var(--size-13);
+  color: var(--color-secondary-01);
+  max-width: 240px;
+
+  &__status {
+    display: flex;
+    color: var(--color-secondary-02);
+    align-items: center;
+    margin-top: var(--size-8);
+    gap: var(--size-4);
+  }
+
+  &__spinner {
+    display: block;
+    flex-shrink: 0;
+    animation: spin 0.8s linear infinite;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    display: none;
+  }
+
+  &__title {
+    display: flex;
+    padding-right: 24px;
+    position: relative;
+  }
+
+  &__name {
+    width: 132px;
+    color: var(--color-primary);
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__delete {
+    flex-shrink: 0;
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: var(--radius-32);
+    border: 1.6px solid var(--border-secondary-01);
+    background-color: var(--color-primary);
+    color: var(--color-tertiary-02);
+    position: absolute;
+    top: -2px;
+    right: -6px;
+  }
+
+  // 로딩 중: 스피너 표시, 파일 아이콘 숨김
+  &[data-state="loading"] {
+    .file-chip__spinner { display: block;}
+    .file-chip__icon    { display: none; }
+  }
+
+  // 업로드 완료: 파일 아이콘 표시, 스피너 숨김
+  &[data-state="ready"] {
+    .file-chip__spinner { display: none; }
+    .file-chip__icon    { display: block; }
+  }
+}

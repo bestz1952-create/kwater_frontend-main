@@ -1,0 +1,32 @@
+// ==============================
+// main.scss — 전체 import 진입점
+// 순서 중요: abstracts → base → layout → components → pages
+// ==============================
+
+// 1. Abstracts (CSS 출력 없음)
+@use 'abstracts/variables';
+@use 'abstracts/mixins';
+@use 'abstracts/functions';
+
+// 2. Base
+@use 'base/reset';
+@use 'base/typography';
+
+// 3. Layout
+@use 'layout/layout';
+@use 'layout/sidebar';
+
+// 4. Components
+@use 'components/icons';
+@use 'components/button';
+@use 'components/modal';
+@use 'components/input-area';
+@use 'components/chat-history-item';
+@use 'components/toast';
+
+// 5. Pages
+@use 'pages/chat';
+@use 'pages/chat-archive';
+@use 'pages/chat-search';
+@use 'pages/doc-writing';
+@use 'pages/settings';

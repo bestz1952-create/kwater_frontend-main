@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>한국수자원공사</title>
+  <link rel="stylesheet" href="../dist/css/main.css">
+  <script src="../js/theme.js" defer></script>
+</head>
+
+<body class="layout">
+
+  <!-- 본문 바로가기 (스킵 네비게이션) -->
+  <a href="#main-content" class="skip-nav">본문 바로가기</a>
+
+  <!-- [COMPONENT] Sidebar -->
+  <aside class="sidebar" id="sidebar" aria-label="채팅 내역 및 메뉴" data-state="expanded">
+
+    <!-- [COMPONENT] SidebarHeader : 로고 + 토글 -->
+    <div class="sidebar__header">
+      <h1 class="sidebar__logo">
+        <a href="index.html" aria-label="수자원공사 AI 홈으로 이동">
+          <img src="../assets/images/k-water.png" alt="수자원공사 로고">
+        </a>
+      </h1>
+      <button class="btn btn--icon sidebar__toggle" id="sidebar-toggle" aria-label="사이드바 접기" aria-expanded="true"
+        aria-controls="sidebar">
+        <i class="icon__panelLeft" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <!-- [COMPONENT] SidebarNav : 주요 액션 메뉴 -->
+    <nav class="sidebar__nav" aria-label="주요 메뉴">
+      <ul role="list">
+
+        <!-- 새 대화 -->
+        <li>
+          <a href="index.html" class="sidebar__nav-item" aria-label="새 대화 시작">
+            <i class="icon__newChat" aria-hidden="true"></i>
+            <span class="sidebar__nav-label">새 대화</span>
+          </a>
+        </li>
+
+        <!-- 대화 검색 -->
+        <li>
+          <a href="search.html" class="sidebar__nav-item" aria-label="대화 검색">
+            <i class="icon__search" aria-hidden="true"></i>
+            <span class="sidebar__nav-label">대화 검색</span>
+          </a>
+        </li>
+
+        <!-- AI 생성 파일 -->
+        <li>
+          <a href="#" class="sidebar__nav-item" aria-label="AI 생성 파일 보기">
+            <i class="icon__file" aria-hidden="true"></i>
+            <span class="sidebar__nav-label">AI 생성 파일</span>
+          </a>
+        </li>
+
+        <!-- 대화 보관함 -->
+        <li>
+          <a href="archive.html" class="sidebar__nav-item" aria-label="대화 보관함 보기">
+            <i class="icon__archive" aria-hidden="true"></i>
+            <span class="sidebar__nav-label">대화 보관함</span>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+
+    <!-- [COMPONENT] ChatHistoryList -->
+    <nav class="sidebar__history" aria-label="채팅 내역">
+      
+    </nav>
+
+    <!-- [COMPONENT] UserProfile -->
+    <div class="sidebar__footer">
+      <button class="user-profile" aria-label="사용자 메뉴 열기" aria-haspopup="menu" aria-expanded="false">
+        <div class="user-profile__avatar"
+          style="background:var(--color-primary);color:#fff;font-size:0.625rem;">
+          길동
+        </div>
+        <span class="user-profile__name">홍길동</span>
+      </button>
+      <div class="user-profile__popover" role="menu" aria-label="사용자 메뉴" data-state="hidden">
+        <ul class="popover__list" role="list">
+          <li><button class="popover__item" role="menuitem" data-action="setting">설정</button></li>
+          <li><button class="popover__item" role="menuitem" data-action="signout">로그아웃</button></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+  <!-- [COMPONENT] ChatWindow -->
+  <main class="chat-window" id="main-content" aria-label="채팅창">
+
+    <!-- [COMPONENT] ChatHeader -->
+    <header class="chat-header">
+      <button class="btn btn--icon" id="mobile-sidebar-btn" aria-label="메뉴 열기" aria-expanded="false" aria-controls="sidebar">
+        <i class="icon__menu" aria-hidden="true"></i>
+      </button>
+      <div class="dropdown" role="group" aria-label="AI 모델 선택">
+        <button class="dropdown__trigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="model-menu">
+          Model
+          <i class="icon__chevronDown" aria-hidden="true"></i>
+        </button>
+        <ul class="dropdown__menu" id="model-menu" role="listbox" data-state="closed" aria-label="모델 선택">
+          <li class="dropdown__item" role="option" aria-selected="false"><a href="">Claude Opus</a></li>
+          <li class="dropdown__item" role="option" aria-selected="true"><a href="">Claude Sonnet</a></li>
+          <li class="dropdown__item" role="option" aria-selected="false"><a href="">Claude Haiku</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- [COMPONENT] onboarding -->
+    <div class="onboarding" id="onboarding" role="log" aria-label="onboarding" aria-live="polite"
+      aria-relevant="additions">
+
+      <!-- [COMPONENT] EmptyState -->
+      <div class="empty-state">
+        <!--빈 화면-->
+      </div>
+    </div>
+  </main>
+
+  <!-- [COMPONENT] Modal: 차트 편집 - ScatterX -->
+  <div class="modal modal__large" id="modal-rename" data-state="open" role="dialog" aria-modal="true" aria-labelledby="modal-scatterX">
+    <div class="modal__backdrop"></div>
+    <div class="modal__dialog">
+      <div class="modal__header">
+        <div class="modal__header-inner">
+          <h3 class="modal__title" id="modal-rename-title">차트 편집 - ScatterX</h3>
+          <button class="modal__close btn btn--icon" aria-label="모달 닫기">
+            <i class="icon__close_bk" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <div class="modal__body">
+        <div class="modal__body-inner">
+          <div class="dummy">
+            내용이 들어갑니다.
+          </div>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--secondary modal__cancel">취소</button>
+        <button class="btn btn--primary modal__submit">적용</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 토스트 컨테이너 -->
+  <div id="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+  <!-- 모바일 오버레이 -->
+  <div class="overlay" id="overlay" aria-hidden="true" data-state="hidden"></div>
+
+  <script src="../js/sidebar.js" defer></script>
+  <script src="../js/toast.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+</body>
+
+</html>

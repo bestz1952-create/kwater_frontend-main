@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>한국수자원공사</title>
+  <link rel="stylesheet" href="../dist/css/main.css">
+  <script src="../js/theme.js" defer></script>
+</head>
+
+<body class="layout">
+
+  <!-- 본문 바로가기 (스킵 네비게이션) -->
+  <a href="#main-content" class="skip-nav">본문 바로가기</a>
+
+  <!-- [COMPONENT] Sidebar -->
+  <aside class="sidebar" id="sidebar" aria-label="채팅 내역 및 메뉴" data-state="expanded">
+
+    <!-- [COMPONENT] SidebarHeader : 로고 + 토글 -->
+    <div class="sidebar__header">
+      <h1 class="sidebar__logo">
+        <a href="index.html" aria-label="수자원공사 AI 홈으로 이동">
+          <img src="../assets/images/k-water.png" alt="수자원공사 로고">
+        </a>
+      </h1>
+      <button class="btn btn--icon sidebar__toggle" id="sidebar-toggle" aria-label="사이드바 접기" aria-expanded="true"
+        aria-controls="sidebar">
+        <i class="icon__panelLeft" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <!-- [COMPONENT] SidebarNav : 주요 액션 메뉴 -->
+    <nav class="sidebar__nav" aria-label="주요 메뉴">
+      <ul role="list">
+
+        <!-- 새 대화 -->
+        <li>
+          <a href="index.html" class="sidebar__nav-item" aria-label="새 대화 시작">
+            <i class="icon__newChat" aria-hidden="true"></i>
+            <span class="sidebar__nav-label">새 대화</span>
+          </a>
+        </li>
+
+        <!-- 대화 검색 -->
+        <li>
+          <a href="search.html" class="sidebar__nav-item" aria-label="대화 검색">
+            <i class="icon__search" aria-hidden="true"></i>
+            <span class="sidebar__nav-label">대화 검색</span>
+          </a>
+        </li>
+
+        <!-- AI 생성 파일 -->
+        <li>
+          <a href="#" class="sidebar__nav-item" aria-label="AI 생성 파일 보기">
+            <i class="icon__file" aria-hidden="true"></i>
+            <span class="sidebar__nav-label">AI 생성 파일</span>
+          </a>
+        </li>
+
+        <!-- 대화 보관함 -->
+        <li>
+          <a href="archive.html" class="sidebar__nav-item" aria-label="대화 보관함 보기">
+            <i class="icon__archive" aria-hidden="true"></i>
+            <span class="sidebar__nav-label">대화 보관함</span>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+
+    <!-- [COMPONENT] ChatHistoryList -->
+    <nav class="sidebar__history" aria-label="채팅 내역">
+    </nav>
+
+    <!-- [COMPONENT] UserProfile -->
+    <div class="sidebar__footer">
+      <button class="user-profile" aria-label="사용자 메뉴 열기" aria-haspopup="menu" aria-expanded="false">
+        <div class="user-profile__avatar"
+          style="background:var(--color-primary);color:#fff;font-size:0.625rem;">
+          길동
+        </div>
+        <span class="user-profile__name">홍길동</span>
+      </button>
+      <div class="user-profile__popover" role="menu" aria-label="사용자 메뉴" data-state="hidden">
+        <ul class="popover__list" role="list">
+          <li><button class="popover__item" role="menuitem" data-action="setting">설정</button></li>
+          <li><button class="popover__item" role="menuitem" data-action="signout">로그아웃</button></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+  <!-- [COMPONENT] ChatArchive  -->
+  <main class="chat-archive" id="main-content" aria-label="대화 보관함">
+
+    <div class="chat-archive__inner">
+      <h2 class="chat-archive__title">대화 보관함</h2>
+
+      <div class="input-area" role="region" aria-label="대화 검색">
+        <div class="input-area__wrap">
+          <div class="search-area__inner">
+            <label for="archive-search" class="sr-only">대화 검색</label>
+            <i class="icon__search" aria-hidden="true"></i>
+            <input type="search" id="archive-search" class="input-area__textarea" placeholder="대화 검색">
+          </div>
+        </div>
+      </div>
+
+      <div class="data-archive">
+        <table>
+          <caption class="sr-only">보관된 대화 목록</caption>
+          <colgroup>
+            <col style="width: auto;">
+            <col style="width: 120px;">
+            <col style="width: 120px;">
+            <col style="width: 84px;">
+            <col style="width: 64px;">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>대화 이름</th>
+              <th>서비스</th>
+              <th>생성 날짜</th>
+              <th>보관 취소</th>
+              <th>대화 삭제</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="chat.html">이름이 길게 이름이 길게 이름이 길게 이름이 길게 이름이 길게 </a></td>
+              <td>AI 자료 찾기</td>
+              <td>9999-99-99</td>
+              <td><button aria-label="보관 취소" data-action="unarchive"><i class="icon__undo" aria-hidden="true"></i></button></td>
+              <td><button aria-label="대화 삭제" data-action="delete"><i class="icon__trash" aria-hidden="true"></i></button></td>
+            </tr>
+            <tr>
+              <td><a href="chat.html">이름</a></td>
+              <td>AI 자료 찾기</td>
+              <td>9999-99-99</td>
+              <td><button aria-label="보관 취소" data-action="unarchive"><i class="icon__undo" aria-hidden="true"></i></button></td>
+              <td><button aria-label="대화 삭제" data-action="delete"><i class="icon__trash" aria-hidden="true"></i></button></td>
+            </tr>
+            <tr>
+              <td><a href="chat.html">이름</a></td>
+              <td>AI 자료 찾기</td>
+              <td>9999-99-99</td>
+              <td><button aria-label="보관 취소" data-action="unarchive"><i class="icon__undo" aria-hidden="true"></i></button></td>
+              <td><button aria-label="대화 삭제" data-action="delete"><i class="icon__trash" aria-hidden="true"></i></button></td>
+            </tr>
+
+            <!-- no data-->
+            <!--
+            <tr>
+              <td colspan="5" class="no-data">
+                <p>보관한 대화가 없습니다.</p>
+              </td>
+            </tr>
+            -->
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+  </main>
+
+  <!-- 모바일 오버레이 -->
+  <div class="overlay" id="overlay" aria-hidden="true" data-state="hidden"></div>
+
+  <!-- 토스트 알람 컨테이너 -->
+  <div id="toast-container" class="toast-alert" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="../js/sidebar.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+  <script src="../js/toast.js" defer></script>
+  <script src="../js/archive-actions.js" defer></script>
+</body>
+
+</html>

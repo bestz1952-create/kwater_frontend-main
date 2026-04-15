@@ -1,0 +1,76 @@
+@use '../abstracts/mixins' as *;
+// ==============================
+// _button.scss
+// ==============================
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-4);
+  border-radius: var(--radius-8);
+  transition: background-color var(--transition-base), opacity var(--transition-base);
+
+  @include focus-ring;
+
+  &--icon {
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-8);
+    color: var(--color-text-muted);
+
+    &:hover { background-color: var(--color-surface-03); color: var(--color-primary); }
+  }
+
+  &--send {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-badge);
+    color: #fff;
+
+    &[data-state="disabled"] {
+      background-color: var(--color-primary-disabled);
+      cursor: default;
+    }
+
+    &[data-state="active"] {
+      background-color: var(--color-primary);
+      .icon__arrowUp { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='11' viewBox='0 0 10 11' fill='none'%3E%3Cpath d='M4.66661 0L4.73497 0.00325521C4.74904 0.0046893 4.76284 0.00747042 4.77664 0.00976562C4.78336 0.0108858 4.79013 0.0116941 4.79682 0.0130208C4.80516 0.0146742 4.81333 0.0169187 4.82156 0.0188802C4.8346 0.021987 4.84775 0.0247437 4.86062 0.0286458C4.87367 0.0326116 4.88633 0.0375861 4.89903 0.0423177C4.90553 0.044731 4.91213 0.0468566 4.91856 0.0494792C4.92893 0.0537173 4.93906 0.0584134 4.94916 0.063151C4.97896 0.0770999 5.00787 0.0933782 5.03575 0.111979C5.07248 0.136479 5.10686 0.164204 5.13796 0.195312L9.13796 4.19531C9.3983 4.45565 9.39828 4.87767 9.13796 5.13802C8.87761 5.39837 8.4556 5.39837 8.19526 5.13802L5.33328 2.27604V10C5.33328 10.3682 5.03477 10.6666 4.66661 10.6667C4.29842 10.6667 3.99994 10.3682 3.99994 10V2.27604L1.13796 5.13802C0.877615 5.39837 0.455606 5.39837 0.195256 5.13802C-0.0650813 4.87767 -0.0650894 4.45566 0.195256 4.19531L4.19526 0.195312C4.24069 0.149882 4.29259 0.110926 4.34955 0.0800781C4.35871 0.0751219 4.36821 0.070902 4.37755 0.0664062C4.40773 0.051849 4.4388 0.0385791 4.4713 0.0286458C4.48481 0.0245223 4.49861 0.0214752 4.51231 0.0182292C4.51988 0.0164368 4.52744 0.014553 4.5351 0.0130208L4.53901 0.0123698L4.59825 0.00325521C4.6207 0.000972376 4.64356 0 4.66661 0Z' fill='white'/%3E%3C/svg%3E"); }
+    }
+
+  }
+
+  &--pause {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-badge);
+    background-color: var(--color-primary);
+  }
+  &--secondary {
+    padding: var(--size-8) var(--size-16);
+    background-color: var(--border-secondary-02);
+    color: var(--color-primary);
+    font-size: var(--size-16);
+    font-weight: var(--font-weight-600);
+
+  }
+  &--primary {
+    padding: var(--size-8) var(--size-16);
+    background-color: var(--color-primary);
+    color: #fff;
+    font-weight: var(--font-weight-600);
+    font-size: var(--size-16);
+
+    &:hover { background-color: var(--color-primary-hover); }
+  }
+  &--chip_search {
+    font-size: var(--size-13);
+    align-items: center;
+    border-radius: var(--radius-6);
+    color: var(--color-secondary-03);
+    background-color: var(--color-surface-01);
+    display: inline-flex;
+    gap: var(--size-4);
+    padding: var(--size-4) var(--size-8);
+  }
+}
